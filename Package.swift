@@ -4,7 +4,7 @@ let package = Package(
     name: "Genome",
     dependencies: [
         // using qutheory until update core library
-        .Package(url: "https://github.com/qutheory/pure-json", majorVersion: 2, minor: 1)
+        .Package(url: "https://github.com/qutheory/pure-json.git", majorVersion: 2, minor: 0)
     ],
     exclude: [
         "Sources/Genome/CoreData"

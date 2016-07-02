@@ -102,6 +102,16 @@ extension Int16 : JsonConvertibleType {}
 extension Int32 : JsonConvertibleType {}
 extension Int64 : JsonConvertibleType {}
 
+extension Json {
+    public var longLongValue: CLongLong? {
+        guard case let .NumberValue(double) = self where double % 1 == 0 else {
+            return nil
+        }
+        
+        return CLongLong(double)
+    }
+}
+
 extension SignedIntegerType {
     public func jsonRepresentation() throws -> Json {
         let double = Double(IntMax(self.toIntMax()))
@@ -109,7 +119,7 @@ extension SignedIntegerType {
     }
     
     public static func newInstance(json: Json, context: Context = EmptyJson) throws -> Self {
-        guard let int = json.intValue else {
+        guard let int = json.longLongValue else {
             throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
         

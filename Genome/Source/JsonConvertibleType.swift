@@ -123,7 +123,7 @@ extension SignedIntegerType {
             throw logError(JsonConvertibleError.UnableToConvert(json: json, toType: "\(self)"))
         }
         
-        return self.init(int.toIntMax())
+        return self.init(int)
     }
 }
 
